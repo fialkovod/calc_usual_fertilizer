@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block title %}
+    <title>{{ title }}</title>
+    {% endblock %}
+    {% block tg_head_tags %}
+
+    {% endblock %}
+
+    <link type="text/css" href="/static/bootstrap-5.3.2/css/bootstrap.css" rel="stylesheet"/>
+    <script src="/static/js/jquery-3.7.1.min.js"></script>
+    <script src="/static/bootstrap-5.3.2/js/bootstrap.bundle.js"></script>
+
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+        <div class="container">
+            <footer>
+                <div class="row">Добавляя свои профили вы публикуете их под открытой лицензией Creative Commons - CC BY
+                    4.0
+                    <br>
+                    Более подробно о ней можно почитать тут: https://creativecommons.org/licenses/by/4.0/
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,53 @@
+<div class="modal fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ id }}Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" style="min-width: 400px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{ id }}Label">{{ h5 }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Заполнять как на пачке например K2O если указан заполнять его а не K </p>
+                <form action="
+                        {% if action %}{% if pk %}{% url action pk %}{% else %}{% url action %}{% endif %}{% endif %}"
+                      method="post" enctype="multipart/form-data"
+                      class="login-form m-auto" id="form-{{ id }}">
+                    <div class="form-group">
+                        <div class="row g-3">
+                            {% csrf_token %}
+                            {% for f in form %}
+                                {% if f.name == "N_NH4" or  f.name == "N_NO3" or  f.name == "N_NH2" %}
+                                    <div class="col-4 col-md-4 mb-4">
+                                        <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                                        {{ f }}
+                                        <div class="invalid-feedback">{{ f.errors }}</div>
+                                    </div>
+                                {% elif  f.name == 'P' or f.name == 'P2O5' or f.name == 'K' or f.name == 'K2O' or f.name == 'Ca' or f.name == 'CaO' or f.name == 'Mg' or f.name == 'MgO' or f.name == 'S' or f.name == 'SO3'  or f.name == 'CaCl2_Ca' or f.name == 'CaCl2_Cl' %}
+                                    <div class="col-6 col-md-6 mb-3">
+                                        <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                                        {{ f }}
+                                        <div class="invalid-feedback">{{ f.errors }}</div>
+                                    </div>
+                                {% else %}
+                                    <div class="col-6 col-md-12 mb-3">
+                                        <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                                        {{ f }}
+                                        <div class="invalid-feedback">{{ f.errors }}</div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+
+                </form>
+                <span id="form-error" class="text-danger"></span>
+                <span id="form-success" class="text-success"></span>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary d-block m-auto" type="submit"
+                        form="form-{{ id }}">{{ btn_name }}</button>
+            </div>
+        </div>
+    </div>
+</div>

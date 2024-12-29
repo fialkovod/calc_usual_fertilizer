@@ -1,0 +1,58 @@
+<div class="modal fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ id }}Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" style="min-width: 400px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{ id }}Label">{{ h5 }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h3>Расчет содержания элементов в кислотах</h3>
+                <form action="" class="login-form m-auto">
+
+
+                    <p><a href="https://ru.webqc.org/mmcalc.php">Кальк морярных масс</a></p>
+                    <div class="form-group">
+                        <label for="acid_type">Тип кислоты:</label>
+                        <select id="acid_type" name="acid_type" onchange="calculateAcidContent()">
+                            <option value="HNO3">Азотная кислота (HNO3)</option>
+                            <option value="H3PO4">Фосфорная кислота (H3PO4)</option>
+                            <option value="H2SO4">Серная кислота (H2SO4)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="acid_concentration">Концентрация (%):</label>
+                        <input type="number" id="acid_concentration" name="acid_concentration" step="0.1" value="35"
+                               onchange="calculateAcidContent()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="acid_density">Плотность (г/мл):</label>
+                        <input type="number" id="acid_density" name="acid_density" step="0.01" value="1.22" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Результат элемента <span id="element" class=" text-danger">0</span></label>
+                        <p>
+                            <span style="display: inline-block; width: 100px;">мл:</span>
+                            <span id="elementPPM_ml">0</span> ppm, масса: <span id="element_mass_ml">0</span> г. <br>
+                            <span style="display: inline-block; width: 100px;">граммы:</span>
+                            <span id="elementPPM_g">0</span> ppm, масса: <span id="element_mass_g">0</span> г. <br>
+
+                            Процентное содержание элемента <span id="element_percentage">0</span>%
+                        </p>
+
+                    </div>
+
+
+                </form>
+                <span id="form-error" class="text-danger"></span>
+                <span id="form-success" class="text-success"></span>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary d-block m-auto" type="submit"
+                        form="form-{{ id }}">{{ btn_name }}</button>
+            </div>
+        </div>
+    </div>
+</div>
